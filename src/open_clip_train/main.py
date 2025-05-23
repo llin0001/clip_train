@@ -1,3 +1,10 @@
+import os
+if os.getenv("ENABLE_DEBUGPY") == "1" and int(os.getenv("LOCAL_RANK", 0)) == 0:
+    import debugpy
+    debugpy.listen(("0.0.0.0", 5678))
+    print("🔍 Waiting for debugger to attach on port 5678...")
+    debugpy.wait_for_client()
+
 import copy
 import glob
 import logging
